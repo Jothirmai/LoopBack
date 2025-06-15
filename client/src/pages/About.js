@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { fetchRewardsHistory } from '../features/rewardsHistory/rewardsHistorySlice';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const PostLoginHome = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate(); // Initialize useNavigate hook
     const { history, currentPoints, loading, error } = useSelector((state) => state.rewardsHistory);
 
     // Calculate total earned and redeemed points from history for summary cards
@@ -43,12 +45,10 @@ const PostLoginHome = () => {
         setCurrentPage(pageNumber);
     };
 
-    // Function to handle adding a new transaction/earning points (placeholder)
+    // Function to handle adding a new transaction/earning points
     const handleAddFirstTransaction = () => {
-        // You would typically navigate to a page where the user can add a new transaction
-        // For example, if you're using React Router:
-        // history.push('/add-transaction');
-        alert("Redirect to 'Add Transaction' page or open a modal!");
+        // This will navigate to the /locator route, assuming you have it set up in your React Router
+        navigate('/locator');
     };
 
     return (
@@ -107,7 +107,7 @@ const PostLoginHome = () => {
 
                     {!loading && !error && history.length === 0 ? (
                         <div className="no-data-card">
-                            <img src="/images/h.svg" alt="No data" className="no-data-icon" /> {/* You might need to adjust this path */}
+                            <img src="/images/h.svg" alt="No data" className="no-data-icon" />
                             <p className="no-data-message">No points distribution data yet!</p>
                             <p className="no-data-subtext">Start recycling to see your points visualized here.</p>
                             <button className="add-expense-button" onClick={handleAddFirstTransaction}>
@@ -152,7 +152,7 @@ const PostLoginHome = () => {
                     {error && <p className="error">{error}</p>}
                     {!loading && !error && history.length === 0 ? (
                         <div className="no-data-card">
-                            <img src="/images/h.svg" alt="No history" className="no-data-icon" /> {/* You might need to adjust this path */}
+                            <img src="/images/h.svg" alt="No history" className="no-data-icon" />
                             <p className="no-data-message">Nothing here yet!</p>
                             <p className="no-data-subtext">It looks like you haven't recorded any recycling activities. Start building your reward story by adding your first one now.</p>
                             <button className="add-expense-button" onClick={handleAddFirstTransaction}>
@@ -161,7 +161,7 @@ const PostLoginHome = () => {
                         </div>
                     ) : (
                         <>
-                            <div className="table-responsive"> {/* Added for horizontal scrolling on small screens */}
+                            <div className="table-responsive">
                                 <table className="history-table">
                                     <thead>
                                         <tr>
