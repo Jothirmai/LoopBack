@@ -6,6 +6,7 @@ import { store } from './app/store';
 import { logout } from './features/auth/authSlice'; // Assuming logout action exists
 
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
 import Footer from './components/Footer';
 import About from './pages/About';
 import Login from './pages/Auth/Login';
@@ -51,7 +52,7 @@ const AppContent = () => {
       {!hideNavbar && <Navbar />}
       <div className="container">
         <Routes>
-          {/* Example of conditional routing based on authentication status */}
+          <Route path='/' element={<Home />} />
           <Route path='/home' element={<About />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
