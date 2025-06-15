@@ -10,9 +10,11 @@ const centerRoutes = require('./routes/centers');
 
 dotenv.config();
 const app = express();
+
+// ✅ Remove trailing slash
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://loopback-fawn.vercel.app/",
+  "https://loopback-fawn.vercel.app",
 ];
 
 // Middleware
@@ -20,11 +22,10 @@ app.use(
   cors({
     origin: allowedOrigins,
     methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
-    credentials: true,
-  })
+    credentials: true,
+  })
 );
 app.use(express.json());
-
 
 // Routes
 app.use('/auth', authRoutes);
