@@ -43,6 +43,14 @@ const PostLoginHome = () => {
         setCurrentPage(pageNumber);
     };
 
+    // Function to handle adding a new transaction/earning points (placeholder)
+    const handleAddFirstTransaction = () => {
+        // You would typically navigate to a page where the user can add a new transaction
+        // For example, if you're using React Router:
+        // history.push('/add-transaction');
+        alert("Redirect to 'Add Transaction' page or open a modal!");
+    };
+
     return (
         <div className="dashboard-container">
             <h1 className="dashboard-header">Reward Points Dashboard</h1>
@@ -98,7 +106,14 @@ const PostLoginHome = () => {
                     {error && <p className="error">{error}</p>}
 
                     {!loading && !error && history.length === 0 ? (
-                        <p className="no-data">No data available for points distribution.</p>
+                        <div className="no-data-card">
+                            <img src="/images/h.svg" alt="No data" className="no-data-icon" /> {/* You might need to adjust this path */}
+                            <p className="no-data-message">No points distribution data yet!</p>
+                            <p className="no-data-subtext">Start recycling to see your points visualized here.</p>
+                            <button className="add-expense-button" onClick={handleAddFirstTransaction}>
+                                Earn your first points!
+                            </button>
+                        </div>
                     ) : (
                         <div className="chart-box-single">
                             <ResponsiveContainer width="100%" height={300}>
@@ -136,7 +151,14 @@ const PostLoginHome = () => {
                     )}
                     {error && <p className="error">{error}</p>}
                     {!loading && !error && history.length === 0 ? (
-                        <p className="no-data">No rewards history available.</p>
+                        <div className="no-data-card">
+                            <img src="/images/h.svg" alt="No history" className="no-data-icon" /> {/* You might need to adjust this path */}
+                            <p className="no-data-message">Nothing here yet!</p>
+                            <p className="no-data-subtext">It looks like you haven't recorded any recycling activities. Start building your reward story by adding your first one now.</p>
+                            <button className="add-expense-button" onClick={handleAddFirstTransaction}>
+                                Start Your Earnings!
+                            </button>
+                        </div>
                     ) : (
                         <>
                             <div className="table-responsive"> {/* Added for horizontal scrolling on small screens */}
@@ -181,6 +203,7 @@ const PostLoginHome = () => {
                     padding: 3rem 2rem;
                     background: #f8fdfd;
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    box-sizing: border-box; /* Added for consistent box model */
                 }
 
                 .dashboard-header {
@@ -279,6 +302,7 @@ const PostLoginHome = () => {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+                    box-sizing: border-box; /* Added for consistent box model */
                 }
 
                 .rewards-chart-section-single .chart-box-single {
@@ -299,6 +323,7 @@ const PostLoginHome = () => {
                     padding: 1.5rem;
                     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
                     overflow-x: auto; /* Enable horizontal scrolling for table on small screens */
+                    box-sizing: border-box; /* Added for consistent box model */
                 }
 
                 .section-title {
@@ -402,11 +427,70 @@ const PostLoginHome = () => {
                     to { transform: rotate(360deg); }
                 }
 
-                .error, .no-data {
+                .error {
                     color: #e53e3e;
                     text-align: center;
                     margin-top: 1rem;
                     font-style: italic;
+                }
+
+                /* New styles for no-data state */
+                .no-data-card {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 2rem;
+                    text-align: center;
+                    background: #ffffff;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                    min-height: 250px; /* Ensure it has some height */
+                }
+
+                .no-data-icon {
+                    width: 80px;
+                    height: 80px;
+                    margin-bottom: 1rem;
+                    color: #e0e0e0; /* A light grey for the icon if it's an SVG and can be colored */
+                    animation: float 3s ease-in-out infinite; /* Apply the float animation here */
+                }
+
+                @keyframes float {
+                    0% { transform: translateY(0px); }
+                    50% { transform: translateY(-10px); } /* Adjust the pixel value for desired float height */
+                    100% { transform: translateY(0px); }
+                }
+
+                .no-data-message {
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                    color: #2d3748;
+                    margin-bottom: 0.5rem;
+                }
+
+                .no-data-subtext {
+                    font-size: 1rem;
+                    color: #718096;
+                    margin-bottom: 1.5rem;
+                    line-height: 1.5;
+                }
+
+                .add-expense-button {
+                    background-color:#2c7a7b; /* A vibrant pink similar to your image */
+                    color: white;
+                    border: none;
+                    padding: 0.8rem 1.5rem;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    transition: background-color 0.3s ease, transform 0.2s ease;
+                }
+
+                .add-expense-button:hover {
+                    background-color:#2c7a7b; /* Darker pink on hover */
+                    transform: translateY(-2px);
                 }
 
                 /* Media Queries for Responsiveness */
@@ -420,7 +504,7 @@ const PostLoginHome = () => {
                     .rewards-chart-section-single,
                     .rewards-history-table-section {
                         min-width: unset; /* Remove explicit min-width to allow full width */
-                        width: 95%; /* Adjust width for better spacing on tablets */
+                        width: calc(100% - 2rem); /* Adjusted: 100% minus the padding/gap of the container */
                         max-width: 600px; /* Max width to keep content readable */
                     }
                     .summary-cards {
@@ -467,7 +551,7 @@ const PostLoginHome = () => {
                     }
                     .rewards-chart-section-single,
                     .rewards-history-table-section {
-                        width: 95%; /* Keep full width for these sections */
+                        width: calc(100% - 2rem); /* Keep full width for these sections, accounting for outer padding */
                         padding: 1rem; /* Reduce padding for sections */
                     }
                     .section-title {
