@@ -10,7 +10,19 @@ const centerRoutes = require('./routes/centers');
 
 dotenv.config();
 const app = express();
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://loopback-sable.vercel.app",
+];
+
+// Middleware
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 
