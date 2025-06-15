@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://loopback-sable.vercel.app",
+  "https://loopback-fawn.vercel.app/",
 ];
 
 // Middleware
