@@ -13,7 +13,6 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Locator from './pages/Locator';
 import Rewards from './pages/Rewards';
-import RewardsHistory from './pages/RewardsHistory';
 import Scan from './pages/Scan';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -56,7 +55,6 @@ const AppContent = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/locator' element={<Locator />} />
           <Route path='/rewards' element={<Rewards />} />
-          <Route path='/rewards-history' element={<RewardsHistory />} />
           <Route path='/scan' element={<Scan />} />
         </Routes>
       </div>

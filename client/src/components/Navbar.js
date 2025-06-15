@@ -50,12 +50,12 @@ const Navbar = () => {
         </Link>
 
         {isAuthenticated && (
-  <div className="menu-icon" style={{ display: 'none', cursor: 'pointer' }}>
-    <button onClick={toggleMenu} style={{ background: 'none', border: 'none', color: 'white' }}>
-      {menuOpen ? <X size={28} /> : <List size={28} />}
-    </button>
-  </div>
-)}
+           <div className="menu-icon" style={{ display: 'none', cursor: 'pointer' }}>
+              <button onClick={toggleMenu} style={{ background: 'none', border: 'none', color: 'white' }}>
+                 {menuOpen ? <X size={28} /> : <List size={28} />}
+                </button>
+          </div>
+        )}
 
         {/* Links - Desktop */}
         <div className="nav-links-desktop" style={{ display: 'flex', alignItems: 'center' }}>
@@ -66,7 +66,6 @@ const Navbar = () => {
                 <Link to="/locator" style={navLinkStyle}>Locator</Link>
                 <Link to="/scan" style={navLinkStyle}>Scan</Link>
                 <Link to="/rewards" style={navLinkStyle}>Redeem Rewards</Link>
-                <Link to="/rewards-history" style={navLinkStyle}>Rewards History</Link>
                 <button
                   onClick={handleLogout}
                   style={{
@@ -104,7 +103,6 @@ const Navbar = () => {
               <Link to="/locator" onClick={toggleMenu} style={navLinkStyle}>Locator</Link>
               <Link to="/scan" onClick={toggleMenu} style={navLinkStyle}>Scan</Link>
               <Link to="/rewards" onClick={toggleMenu} style={navLinkStyle}>Redeem Rewards</Link>
-              <Link to="/rewards-history" onClick={toggleMenu} style={navLinkStyle}>Rewards History</Link>
               <button
                 onClick={handleLogout}
                 style={{
